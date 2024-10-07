@@ -1,5 +1,5 @@
 package co.edu.uniquindio.peluqueria.model.enums;
 
-public enum corte {
+public enum TipoCorte {
     CORTE_CABELLO, BARBA, CEJAS, TINTURACION
 }
