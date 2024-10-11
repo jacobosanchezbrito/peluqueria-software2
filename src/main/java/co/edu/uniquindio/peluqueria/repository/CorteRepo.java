@@ -1,4 +1,4 @@
-package co.edu.uniquindio.peluqueria.repositorios;
+package co.edu.uniquindio.peluqueria.repository;
 
 import co.edu.uniquindio.peluqueria.model.documents.Corte;
 import org.springframework.data.mongodb.repository.MongoRepository;

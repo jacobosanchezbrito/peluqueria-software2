@@ -1,8 +1,8 @@
-package co.edu.uniquindio.peluqueria.dto;
+package co.edu.uniquindio.peluqueria.dto.Corte;
 
 import co.edu.uniquindio.peluqueria.model.enums.TipoCorte;
 
-public record CrearCorteDTO(
+public record EditarCorteDTO(
         String titulo,
         String imagen,
         String descripcion,
@@ -10,5 +10,4 @@ public record CrearCorteDTO(
         int tiempo,
         double precio
 ) {
-
 }

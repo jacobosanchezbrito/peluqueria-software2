@@ -5,13 +5,14 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("productos")
+@Document("producto")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Producto {
+
     @Id
     private String idProducto;
 

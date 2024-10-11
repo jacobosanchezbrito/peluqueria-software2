@@ -1,8 +1,8 @@
-package co.edu.uniquindio.peluqueria.servicios.interfaces;
+package co.edu.uniquindio.peluqueria.service.interfaces;
 
-import co.edu.uniquindio.peluqueria.dto.CrearServicioDTO;
-import co.edu.uniquindio.peluqueria.dto.EditarServicioDTO;
-import co.edu.uniquindio.peluqueria.dto.InformacionServicio;
+import co.edu.uniquindio.peluqueria.dto.Servicio.CrearServicioDTO;
+import co.edu.uniquindio.peluqueria.dto.Servicio.EditarServicioDTO;
+import co.edu.uniquindio.peluqueria.dto.Servicio.InformacionServicio;
 import co.edu.uniquindio.peluqueria.model.documents.Servicios;
 import java.util.List;
 

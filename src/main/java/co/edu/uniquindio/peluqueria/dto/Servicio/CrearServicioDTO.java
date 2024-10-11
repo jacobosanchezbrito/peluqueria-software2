@@ -1,8 +1,8 @@
-package co.edu.uniquindio.peluqueria.dto;
+package co.edu.uniquindio.peluqueria.dto.Servicio;
 
 import java.util.List;
 
-public record InformacionServicio(
+public record CrearServicioDTO(
         String idCorte,
         List<String> idProductos,
         String nombreServicio,

@@ -1,4 +1,4 @@
-package co.edu.uniquindio.peluqueria.dto;
+package co.edu.uniquindio.peluqueria.dto.Servicio;
 
 import java.util.List;
 

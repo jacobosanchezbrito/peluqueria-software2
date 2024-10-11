@@ -1,4 +1,4 @@
-package co.edu.uniquindio.peluqueria.dto;
+package co.edu.uniquindio.peluqueria.dto.Producto;
 
 import co.edu.uniquindio.peluqueria.model.enums.TipoProducto;
 
