@@ -1,10 +1,9 @@
 package co.edu.uniquindio.peluqueria.dto.Corte;
 
 import co.edu.uniquindio.peluqueria.model.enums.TipoCorte;
-
 import jakarta.validation.constraints.*;
 
-public record EditarCorteDTO(
+public record InformacionCorteDTO(
         @NotBlank String titulo,
         String imagen,
         @Size(max = 500) String descripcion,
@@ -12,4 +11,5 @@ public record EditarCorteDTO(
         @Min(5) int tiempo,
         @DecimalMin("0.0") double precio
 ) {}
+
 

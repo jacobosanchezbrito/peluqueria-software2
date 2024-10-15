@@ -1,14 +1,13 @@
 package co.edu.uniquindio.peluqueria.dto.Corte;
 
 import co.edu.uniquindio.peluqueria.model.enums.TipoCorte;
+import jakarta.validation.constraints.*;
 
 public record CrearCorteDTO(
-        String titulo,
+        @NotBlank String titulo,
         String imagen,
-        String descripcion,
-        TipoCorte tipoCorte,
-        int tiempo,
-        double precio
-) {
-
-}
+        @Size(max = 500) String descripcion,
+        @NotNull TipoCorte tipoCorte,
+        @Min(5) int tiempo,
+        @DecimalMin("0.0") double precio
+) {}
