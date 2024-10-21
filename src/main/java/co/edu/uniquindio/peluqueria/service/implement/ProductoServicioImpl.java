@@ -2,9 +2,8 @@ package co.edu.uniquindio.peluqueria.service.implement;
 
 import co.edu.uniquindio.peluqueria.dto.Producto.CrearProductoDTO;
 import co.edu.uniquindio.peluqueria.dto.Producto.EditarProductoDTO;
-import co.edu.uniquindio.peluqueria.dto.Producto.InformacionProducto;
+import co.edu.uniquindio.peluqueria.dto.Producto.InformacionProductoDTO;
 import co.edu.uniquindio.peluqueria.exceptions.ProductoException;
-import co.edu.uniquindio.peluqueria.exceptions.ProductoNoEncontradoException;
 import co.edu.uniquindio.peluqueria.model.documents.Producto;
 import co.edu.uniquindio.peluqueria.repository.ProductoRepo;
 import co.edu.uniquindio.peluqueria.service.interfaces.ProductoServicio;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductoServicioImpl implements ProductoServicio {
@@ -54,19 +52,19 @@ public class ProductoServicioImpl implements ProductoServicio {
     }
 
     @Override
-    public String eliminarProducto(String id) throws Exception {
+    public String eliminarProducto(String id) throws ProductoException {
         if (!productoRepo.existsById(id)) {
-            throw new Exception("El producto no existe");
+            throw new ProductoException("El producto no existe");
         }
         productoRepo.deleteById(id);
         return "Producto eliminado con éxito";
     }
 
     @Override
-    public InformacionProducto obtenerInformacionProducto(String id) throws ProductoNoEncontradoException {
+    public InformacionProductoDTO obtenerInformacionProducto(String id) throws ProductoException {
         Producto producto = productoRepo.findById(id)
-                .orElseThrow(() -> new ProductoNoEncontradoException("El producto no existe"));
-        return new InformacionProducto(
+                .orElseThrow(() -> new ProductoException("El producto no existe"));
+        return new InformacionProductoDTO(
                 producto.getTitulo(),
                 producto.getImagen(),
                 producto.getDescripcion(),

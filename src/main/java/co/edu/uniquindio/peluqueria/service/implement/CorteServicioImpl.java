@@ -3,6 +3,7 @@ package co.edu.uniquindio.peluqueria.service.implement;
 import co.edu.uniquindio.peluqueria.dto.Corte.CrearCorteDTO;
 import co.edu.uniquindio.peluqueria.dto.Corte.EditarCorteDTO;
 import co.edu.uniquindio.peluqueria.dto.Corte.InformacionCorteDTO;
+import co.edu.uniquindio.peluqueria.exceptions.CorteException;
 import co.edu.uniquindio.peluqueria.model.documents.Corte;
 import co.edu.uniquindio.peluqueria.repository.CorteRepo;
 import co.edu.uniquindio.peluqueria.service.interfaces.CorteServicio;
@@ -21,7 +22,7 @@ public class CorteServicioImpl implements CorteServicio {
     }
 
     @Override
-    public String crearCorte(CrearCorteDTO corteDTO) throws Exception {
+    public String crearCorte(CrearCorteDTO corteDTO) throws CorteException {
         Corte corte = new Corte(
                 null,
                 corteDTO.titulo(),
@@ -37,7 +38,7 @@ public class CorteServicioImpl implements CorteServicio {
     }
 
     @Override
-    public String editarCuenta(EditarCorteDTO corteDTO) throws Exception {
+    public String editarCuenta(EditarCorteDTO corteDTO) throws CorteException {
         Optional<Corte> corteOptional = corteRepo.findById(corteDTO.titulo()); // Cambia según cómo identifiques el corte
 
         if (corteOptional.isPresent()) {
@@ -51,23 +52,23 @@ public class CorteServicioImpl implements CorteServicio {
             corteRepo.save(corte);
             return "Corte editado correctamente.";
         } else {
-            throw new Exception("Corte no encontrado.");
+            throw new CorteException("Corte no encontrado.");
         }
     }
 
     @Override
-    public String eliminarCuenta(String id) throws Exception {
+    public String eliminarCuenta(String id) throws CorteException {
         if (corteRepo.existsById(id)) {
             corteRepo.deleteById(id);
             return "Corte eliminado correctamente.";
         } else {
-            throw new Exception("Corte no encontrado.");
+            throw new CorteException("Corte no encontrado.");
         }
     }
 
     @Override
-    public InformacionCorteDTO obtenerInformacionCorte(String id) throws Exception {
-        Corte corte = corteRepo.findById(id).orElseThrow(() -> new Exception("Corte no encontrado."));
+    public InformacionCorteDTO obtenerInformacionCorte(String id) throws CorteException {
+        Corte corte = corteRepo.findById(id).orElseThrow(() -> new CorteException("Corte no encontrado."));
         return new InformacionCorteDTO(
                 corte.getTitulo(),
                 corte.getImagen(),

@@ -2,7 +2,7 @@ package co.edu.uniquindio.peluqueria.controllers;
 
 import co.edu.uniquindio.peluqueria.dto.Producto.CrearProductoDTO;
 import co.edu.uniquindio.peluqueria.dto.Producto.EditarProductoDTO;
-import co.edu.uniquindio.peluqueria.dto.Producto.InformacionProducto;
+import co.edu.uniquindio.peluqueria.dto.Producto.InformacionProductoDTO;
 import co.edu.uniquindio.peluqueria.model.documents.Producto;
 import co.edu.uniquindio.peluqueria.service.interfaces.ProductoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}")
-    public InformacionProducto obtenerProducto(@PathVariable String id) throws Exception {
+    public InformacionProductoDTO obtenerProducto(@PathVariable String id) throws Exception {
         return productoServicio.obtenerInformacionProducto(id);
     }
 

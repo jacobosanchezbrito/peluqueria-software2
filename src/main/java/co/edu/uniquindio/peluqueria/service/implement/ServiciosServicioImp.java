@@ -1,6 +1,6 @@
 package co.edu.uniquindio.peluqueria.service.implement;
 
-import co.edu.uniquindio.peluqueria.dto.Producto.InformacionProducto;
+import co.edu.uniquindio.peluqueria.dto.Producto.InformacionProductoDTO;
 import co.edu.uniquindio.peluqueria.dto.Servicio.CrearServicioDTO;
 import co.edu.uniquindio.peluqueria.dto.Servicio.EditarServicioDTO;
 import co.edu.uniquindio.peluqueria.dto.Servicio.ObtenerServicioDTO;
@@ -133,8 +133,8 @@ public class ServiciosServicioImp implements ServiciosServicio {
         );
     }
 
-    private InformacionProducto convertirProductoAObtenerProductoDTO(Producto producto){
-        return new InformacionProducto(
+    private InformacionProductoDTO convertirProductoAObtenerProductoDTO(Producto producto){
+        return new InformacionProductoDTO(
                 producto.getIdProducto(),
                 producto.getTitulo(),
                 producto.getImagen(),
