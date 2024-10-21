@@ -6,11 +6,14 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document("corte")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Corte {
 
@@ -23,4 +26,5 @@ public class Corte {
     private TipoCorte tipoCorte;
     private int tiempo;
     private double precio;
+    private List<String> empleadosIds;
 }
