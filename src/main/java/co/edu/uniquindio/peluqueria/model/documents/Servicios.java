@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Servicios {
 
@@ -18,8 +19,8 @@ public class Servicios {
     @EqualsAndHashCode.Include
     private String id;
 
-    private String idCorte;
-    private List<String> idProductos;
+    private Corte corte;
+    private List<Producto> productos;
     private String nombreServicio;
     private int tiempoEstimado;
 }
