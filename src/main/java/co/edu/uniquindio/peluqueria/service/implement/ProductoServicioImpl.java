@@ -31,8 +31,9 @@ public class ProductoServicioImpl implements ProductoServicio {
                 productoDTO.precio()
         );
         productoRepo.save(producto);
-        return "Producto creado con éxito: " + producto.getIdProducto();
+        return "Producto creado con éxito: " + producto.getId();
     }
+
 
     @Override
     public String editarProducto(EditarProductoDTO productoDTO) throws ProductoException {

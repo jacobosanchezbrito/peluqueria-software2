@@ -31,10 +31,10 @@ public class CorteController {
         }
     }
 
-    @PutMapping("/editar")
-    public ResponseEntity<String> editarCorte(@RequestBody EditarCorteDTO corteDTO) {
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<String> editarCorte(@PathVariable String id, @RequestBody EditarCorteDTO corteDTO) {
         try {
-            String mensaje = corteServicio.editarCuenta(corteDTO);
+            String mensaje = corteServicio.editarCuenta(id, corteDTO);
             return new ResponseEntity<>(mensaje, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

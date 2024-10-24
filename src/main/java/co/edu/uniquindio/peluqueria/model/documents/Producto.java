@@ -12,15 +12,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
 public class Producto {
 
     @Id
-    private String idProducto;
+    @EqualsAndHashCode.Include
+    private String id;
 
     private String titulo;
     private String imagen;
     private String descripcion;
+
     private int stockDisponible;
+
     private TipoProducto tipoProducto;
+
     private double precio;
 }

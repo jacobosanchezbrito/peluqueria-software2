@@ -68,40 +68,30 @@ public class EmpleadoServicioImp implements EmpleadoServicio {
             throw new EmpleadoException("Ya existe un empleado con el mismo número de teléfono.");
         }
 
-        // Actualizar los campos del empleado existente con los nuevos datos
+        // Actualizar los campos del empleado existente
         empleadoExistente.setNombre(empleadoDTO.nombre());
         empleadoExistente.setTelefono(empleadoDTO.telefono());
         empleadoExistente.setEspecialidad(empleadoDTO.especialidad());
 
-        // Actualizar los horarios del empleado manteniendo los mismos IDs
-        List<Horario> horariosActualizados = empleadoDTO.horario().stream()
+        // Reemplazar la lista de horarios existente con la nueva lista de horarios
+        List<Horario> nuevosHorarios = empleadoDTO.horario().stream()
                 .map(dto -> {
-                    // Encontrar el horario existente por ID o lanzar excepción si no lo encuentra
-                    Horario horarioExistente = null;
-                    try {
-                        horarioExistente = empleadoExistente.getHorario().stream()
-                                .filter(h -> h.getId().equals(dto.id()))
-                                .findFirst()
-                                .orElseThrow(() -> new EmpleadoException("El horario con ID " + dto.id() + " no existe."));
-                    } catch (EmpleadoException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                    // Actualizar los valores del horario existente
-                    horarioExistente.setDia(dto.dia());
-                    horarioExistente.setHoraEntrada(dto.horaEntrada());
-                    horarioExistente.setHoraSalida(dto.horaSalida());
-                    horarioExistente.setHorasTrabajadas(dto.horasTrabajadas());
-
-                    return horarioExistente;  // Devolver el horario actualizado
+                    Horario nuevoHorario = new Horario();
+                    nuevoHorario.setDia(dto.dia());
+                    nuevoHorario.setHoraEntrada(dto.horaEntrada());
+                    nuevoHorario.setHoraSalida(dto.horaSalida());
+                    nuevoHorario.setHorasTrabajadas(dto.horasTrabajadas());
+                    return nuevoHorario;
                 })
                 .collect(Collectors.toList());
 
-        empleadoExistente.setHorario(horariosActualizados);
+        // Establecer los nuevos horarios en el empleado existente
+        empleadoExistente.setHorario(nuevosHorarios);
 
         // Guardar los cambios en la base de datos
         empleadoRepo.save(empleadoExistente);
     }
+
 
     @Override
     public void eliminarEmpleado(String id) throws EmpleadoException {

@@ -35,8 +35,10 @@ public class EmpleadoControllers {
     }
 
     // Actualizar empleado
-    @PutMapping("/actualizar")
-    public ResponseEntity<MensajeDTO<String>> actualizarEmpleado(@Valid @RequestBody String id, @Valid @RequestBody ActualizarEmpleadoDTO empleadoDTO) {
+    @PutMapping("/actualizar/{id}")
+    public ResponseEntity<MensajeDTO<String>> actualizarEmpleado(
+            @PathVariable String id,
+            @Valid @RequestBody ActualizarEmpleadoDTO empleadoDTO) {
         try {
             empleadoServicio.actualizarEmpleado(id, empleadoDTO);
             return ResponseEntity.ok(new MensajeDTO<>(false, "Empleado actualizado exitosamente"));
@@ -44,6 +46,7 @@ public class EmpleadoControllers {
             return ResponseEntity.badRequest().body(new MensajeDTO<>(false, e.getMessage()));
         }
     }
+
 
     // Eliminar empleado
     @DeleteMapping("/eliminar/{id}")

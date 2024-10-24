@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CorteServicio {
     String crearCorte(CrearCorteDTO corteDTO) throws CorteException;
-    String editarCuenta(EditarCorteDTO corteDTO) throws CorteException;
+    String editarCuenta(String id, EditarCorteDTO corteDTO) throws CorteException;
     String eliminarCuenta(String id) throws CorteException;
     InformacionCorteDTO obtenerInformacionCorte(String id) throws CorteException;
     List<Corte> listarCortes();

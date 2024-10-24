@@ -38,11 +38,12 @@ public class CorteServicioImpl implements CorteServicio {
     }
 
     @Override
-    public String editarCuenta(EditarCorteDTO corteDTO) throws CorteException {
-        Optional<Corte> corteOptional = corteRepo.findById(corteDTO.titulo()); // Cambia según cómo identifiques el corte
+    public String editarCuenta(String id, EditarCorteDTO corteDTO) throws CorteException {
+        Optional<Corte> corteOptional = corteRepo.findById(id);
 
         if (corteOptional.isPresent()) {
             Corte corte = corteOptional.get();
+            corte.setTitulo(corteDTO.titulo());
             corte.setImagen(corteDTO.imagen());
             corte.setDescripcion(corteDTO.descripcion());
             corte.setTipoCorte(corteDTO.tipoCorte());

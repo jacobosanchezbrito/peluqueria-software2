@@ -135,10 +135,9 @@ public class ServiciosServicioImp implements ServiciosServicio {
 
     private InformacionProductoDTO convertirProductoAObtenerProductoDTO(Producto producto){
         return new InformacionProductoDTO(
-                producto.getIdProducto(),
+                producto.getId(),
                 producto.getTitulo(),
                 producto.getImagen(),
-                producto.getDescripcion(),
                 producto.getStockDisponible(),
                 producto.getTipoProducto(),
                 producto.getPrecio()
