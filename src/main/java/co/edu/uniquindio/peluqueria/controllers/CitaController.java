@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/api/citas")  // Ruta base para las citas
 public class CitaController {
 
     @Autowired
@@ -30,13 +32,15 @@ public class CitaController {
     }
 
     // Editar cita
-    @PutMapping("/editar")
-    public ResponseEntity<MensajeDTO<String>> editarCita(@RequestParam String id, @Valid @RequestBody EditarCitaDTO citaDTO) {
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<MensajeDTO<String>> editarCita(@PathVariable String id, @Valid @RequestBody EditarCitaDTO citaDTO) {
         try {
             citaServicio.editarCita(id, citaDTO);
             return ResponseEntity.ok(new MensajeDTO<>(false, "Cita editada exitosamente"));
         } catch (CitaException e) {
             return ResponseEntity.badRequest().body(new MensajeDTO<>(false, e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(new MensajeDTO<>(true, "Error interno del servidor"));
         }
     }
 

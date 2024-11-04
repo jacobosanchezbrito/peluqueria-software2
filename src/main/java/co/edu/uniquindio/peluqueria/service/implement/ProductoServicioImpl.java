@@ -36,21 +36,28 @@ public class ProductoServicioImpl implements ProductoServicio {
 
 
     @Override
-    public String editarProducto(EditarProductoDTO productoDTO) throws ProductoException {
-        Optional<Producto> productoOpt = productoRepo.findById(productoDTO.titulo());
+    public String editarProducto(String id, EditarProductoDTO productoDTO) throws ProductoException {
+        // Busca el producto usando el ID proporcionado
+        Optional<Producto> productoOpt = productoRepo.findById(id);
         if (productoOpt.isEmpty()) {
             throw new ProductoException("El producto no existe");
         }
+
         Producto producto = productoOpt.get();
+        // Actualiza los campos del producto con los valores del DTO
         producto.setTitulo(productoDTO.titulo());
         producto.setImagen(productoDTO.imagen());
         producto.setDescripcion(productoDTO.descripcion());
         producto.setStockDisponible(productoDTO.stockDisponible());
         producto.setTipoProducto(productoDTO.tipoProducto());
         producto.setPrecio(productoDTO.precio());
+
+        // Guarda los cambios en el repositorio
         productoRepo.save(producto);
+
         return "Producto actualizado con éxito";
     }
+
 
     @Override
     public String eliminarProducto(String id) throws ProductoException {
