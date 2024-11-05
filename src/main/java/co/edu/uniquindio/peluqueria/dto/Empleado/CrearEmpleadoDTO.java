@@ -1,6 +1,7 @@
 package co.edu.uniquindio.peluqueria.dto.Empleado;
 
 import co.edu.uniquindio.peluqueria.model.enums.EspecialidadEmpleado;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -12,7 +13,7 @@ public record CrearEmpleadoDTO(
 
         @NotBlank(message = "La cédula es requerida")
         @Length(max = 10, message = "La cédula debe tener un máximo de 10 caracteres")
-        @Pattern(regexp = "\\d+", message = "La cédula solo debe contener números")//La expresión regular \\d+ en @Pattern asegura que la cédula solo contenga dígitos
+        @Pattern(regexp = "\\d+", message = "La cédula solo debe contener números") // La expresión regular \\d+ en @Pattern asegura que la cédula solo contenga dígitos
         String cedula,
 
         @NotBlank(message = "El nombre es requerido")
@@ -27,6 +28,15 @@ public record CrearEmpleadoDTO(
         List<CrearHorarioDTO> horario,
 
         @NotNull(message = "La especialidad es requerida")
-        EspecialidadEmpleado especialidad
+        EspecialidadEmpleado especialidad,
+
+        @NotBlank(message = "El correo es requerido")
+        @Email(message = "El correo debe ser válido")
+        @Length(max = 100, message = "El correo debe tener un máximo de 100 caracteres")
+        String correo,
+
+        @NotBlank(message = "La contraseña es requerida")
+        @Length(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
+        String contrasena
 ) {
 }

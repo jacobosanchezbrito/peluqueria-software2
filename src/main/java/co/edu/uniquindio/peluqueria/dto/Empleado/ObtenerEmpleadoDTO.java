@@ -11,7 +11,7 @@ public record ObtenerEmpleadoDTO(
 
         String telefono,
 
-        List<HorarioDTO> horario,
+        String correo, List<HorarioDTO> horario,
 
         EspecialidadEmpleado especialidad
 ) {

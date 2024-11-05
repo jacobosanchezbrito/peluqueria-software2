@@ -26,4 +26,7 @@ public class Empleado {
     private List<Horario> horario;
     private EspecialidadEmpleado especialidad;
 
+    // Nuevos atributos para autenticación
+    private String correo; // Correo electrónico para login
+    private String contrasena; // Contraseña o hash de la contraseña
 }

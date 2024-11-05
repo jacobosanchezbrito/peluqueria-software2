@@ -24,10 +24,17 @@ public class ClienteServicioImp implements ClienteServicio {
             throw new ClienteException("Ya existe un cliente con el teléfono: " + clienteDTO.getTelefono());
         }
 
+        // Validación para verificar si ya existe un cliente con el mismo correo
+        if (clienteRepo.existsByCorreo(clienteDTO.getCorreo())) {
+            throw new ClienteException("Ya existe un cliente con el correo: " + clienteDTO.getCorreo());
+        }
+
         // Crear instancia de Cliente usando el DTO
         Cliente cliente = new Cliente();
         cliente.setNombre(clienteDTO.getNombre());
         cliente.setTelefono(clienteDTO.getTelefono());
+        cliente.setCorreo(clienteDTO.getCorreo()); // Agregar correo
+        cliente.setContrasena(clienteDTO.getContrasena()); // Agregar contraseña
 
         // Guardar el cliente en la base de datos
         clienteRepo.save(cliente);
@@ -58,6 +65,8 @@ public class ClienteServicioImp implements ClienteServicio {
             // Actualizar los campos con los nuevos datos del DTO
             cliente.setNombre(clienteDTO.getNombre());
             cliente.setTelefono(clienteDTO.getTelefono());
+            cliente.setCorreo(clienteDTO.getCorreo()); // Agregar actualización de correo
+            cliente.setContrasena(clienteDTO.getContrasena()); // Agregar actualización de contraseña
 
             // Guardar los cambios
             clienteRepo.save(cliente);
@@ -74,5 +83,4 @@ public class ClienteServicioImp implements ClienteServicio {
         }
         clienteRepo.deleteById(id);
     }
-
 }

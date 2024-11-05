@@ -16,7 +16,9 @@ public class Cliente {
     private String id;
 
     private String nombre;
-
     private String telefono;
 
+    // Nuevos atributos para autenticación
+    private String correo; // Correo electrónico para login
+    private String contrasena; // Contraseña o hash de la contraseña
 }

@@ -10,4 +10,6 @@ public interface ClienteRepo extends MongoRepository<Cliente, String> {
 
     // Consulta personalizada para verificar si ya existe un cliente con un teléfono específico
     boolean existsByTelefono(String telefono);
+
+    boolean existsByCorreo(String correo);
 }

@@ -24,9 +24,9 @@ public class EmpleadoServicioImp implements EmpleadoServicio {
 
     @Override
     public void crearEmpleado(CrearEmpleadoDTO empleadoDTO) throws EmpleadoException {
-        // Validaciones previas (ejemplo: verificar si ya existe un empleado con el mismo nombre o teléfono)
+        // Validaciones previas (ejemplo: verificar si ya existe un empleado con la misma cédula o teléfono)
         if (empleadoRepo.existsByCedula(empleadoDTO.cedula())) {
-            throw new EmpleadoException("Ya existe un empleado con el nombre: " + empleadoDTO.nombre());
+            throw new EmpleadoException("Ya existe un empleado con la cédula: " + empleadoDTO.cedula());
         }
 
         if (empleadoRepo.existsByTelefono(empleadoDTO.telefono())) {
@@ -37,10 +37,14 @@ public class EmpleadoServicioImp implements EmpleadoServicio {
         Empleado empleado = new Empleado();
         empleado.setNombre(empleadoDTO.nombre());
         empleado.setTelefono(empleadoDTO.telefono());
+        empleado.setCorreo(empleadoDTO.correo()); // Agregar el correo
+        empleado.setContrasena(empleadoDTO.contrasena()); // Agregar la contraseña
         empleado.setEspecialidad(empleadoDTO.especialidad());
 
         // Convertir la lista de CrearHorarioDTO a Horario y asignarlo al empleado
-        List<Horario> horarios = empleadoDTO.horario().stream().map(this::convertirCrearHorarioADominio).collect(Collectors.toList());
+        List<Horario> horarios = empleadoDTO.horario().stream()
+                .map(this::convertirCrearHorarioADominio)
+                .collect(Collectors.toList());
         empleado.setHorario(horarios);
 
         // Guardar el empleado en la base de datos
@@ -71,6 +75,8 @@ public class EmpleadoServicioImp implements EmpleadoServicio {
         // Actualizar los campos del empleado existente
         empleadoExistente.setNombre(empleadoDTO.nombre());
         empleadoExistente.setTelefono(empleadoDTO.telefono());
+        empleadoExistente.setCorreo(empleadoDTO.correo()); // Actualizar el correo
+        empleadoExistente.setContrasena(empleadoDTO.contrasena()); // Actualizar la contraseña
         empleadoExistente.setEspecialidad(empleadoDTO.especialidad());
 
         // Reemplazar la lista de horarios existente con la nueva lista de horarios
@@ -91,7 +97,6 @@ public class EmpleadoServicioImp implements EmpleadoServicio {
         // Guardar los cambios en la base de datos
         empleadoRepo.save(empleadoExistente);
     }
-
 
     @Override
     public void eliminarEmpleado(String id) throws EmpleadoException {
@@ -132,6 +137,7 @@ public class EmpleadoServicioImp implements EmpleadoServicio {
                 empleado.getId(),
                 empleado.getNombre(),
                 empleado.getTelefono(),
+                empleado.getCorreo(), // Agregar el correo al DTO
                 empleado.getHorario().stream()
                         .map(this::convertirHorarioAObtenerHorarioDTO)
                         .collect(Collectors.toList()),
@@ -148,5 +154,4 @@ public class EmpleadoServicioImp implements EmpleadoServicio {
                 horario.getHorasTrabajadas()
         );
     }
-
 }
