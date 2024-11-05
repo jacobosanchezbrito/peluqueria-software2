@@ -32,17 +32,19 @@ public class ServicioController {
         }
     }
 
-    @PutMapping("/editar")
-    public ResponseEntity<MensajeDTO<String>> editarServicio(@Valid @RequestBody String id, @Valid @RequestBody EditarServicioDTO servicioDTO){
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<MensajeDTO<String>> editarServicio(
+            @PathVariable String id,
+            @Valid @RequestBody EditarServicioDTO servicioDTO) {
         try {
             serviciosServicio.editarServicio(id, servicioDTO);
             return ResponseEntity.ok(new MensajeDTO<>(false, "Servicio editado correctamente"));
-        }catch (ServicioException e){
+        } catch (ServicioException e) {
             return ResponseEntity.badRequest().body(new MensajeDTO<>(false, e.getMessage()));
         }
     }
 
-    @DeleteMapping("/elimiar/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<MensajeDTO<String>> eliminarServicio(@PathVariable String id){
         try {
             serviciosServicio.elimiarServicio(id);
