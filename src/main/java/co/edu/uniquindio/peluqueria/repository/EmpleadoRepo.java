@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface EmpleadoRepo extends MongoRepository<Empleado, String> {
-    // Método para verificar si ya existe un empleado con el mismo nombre
+    // Método para verificar si ya existe un empleado con la misma cédula
     boolean existsByCedula(String cedula);
 
     // Método para verificar si ya existe un empleado con el mismo teléfono
@@ -14,4 +14,7 @@ public interface EmpleadoRepo extends MongoRepository<Empleado, String> {
 
     // Método para buscar un empleado por ID
     Optional<Empleado> findById(String id);
+
+    // Método para buscar un empleado por correo
+    Optional<Empleado> findByCorreo(String correo);
 }

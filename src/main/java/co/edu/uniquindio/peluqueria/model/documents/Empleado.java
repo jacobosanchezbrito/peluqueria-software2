@@ -4,6 +4,7 @@ import co.edu.uniquindio.peluqueria.model.enums.EspecialidadEmpleado;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import co.edu.uniquindio.peluqueria.model.enums.Rol;
 
 import java.util.List;
 
@@ -25,8 +26,7 @@ public class Empleado {
     private String telefono;
     private List<Horario> horario;
     private EspecialidadEmpleado especialidad;
-
-    // Nuevos atributos para autenticación
     private String correo; // Correo electrónico para login
     private String contrasena; // Contraseña o hash de la contraseña
+    private Rol rol = Rol.EMPLEADO;  // Rol predeterminado para empleados
 }

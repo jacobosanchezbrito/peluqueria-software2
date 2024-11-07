@@ -3,6 +3,7 @@ package co.edu.uniquindio.peluqueria.model.documents;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import co.edu.uniquindio.peluqueria.model.enums.Rol;
 
 @Document("cliente")
 @Getter
@@ -21,4 +22,5 @@ public class Cliente {
     // Nuevos atributos para autenticación
     private String correo; // Correo electrónico para login
     private String contrasena; // Contraseña o hash de la contraseña
+    private Rol rol = Rol.CLIENTE;
 }

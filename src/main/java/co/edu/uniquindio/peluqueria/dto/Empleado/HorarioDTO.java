@@ -3,15 +3,16 @@ package co.edu.uniquindio.peluqueria.dto.Empleado;
 import co.edu.uniquindio.peluqueria.model.enums.Dia;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public record HorarioDTO(
         String id,
 
         Dia dia,
 
-        LocalDateTime horaEntrada,
+        LocalTime horaEntrada,
 
-        LocalDateTime horaSalida,
+        LocalTime horaSalida,
 
         int horasTrabajadas
 ) {

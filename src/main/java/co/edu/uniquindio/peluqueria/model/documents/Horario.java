@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Document("horario")
 @Data
@@ -21,7 +22,7 @@ public class Horario {
     private String id;
 
     private Dia dia;
-    private LocalDateTime horaEntrada;
-    private LocalDateTime horaSalida;
+    private LocalTime horaEntrada;
+    private LocalTime horaSalida;
     private int horasTrabajadas;
 }
